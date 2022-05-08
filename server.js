@@ -10,4 +10,3 @@ app.use("/api", notesRoutes);
 app.listen(PORT, () => {
   console.log(`Server is live on port ${PORT}`);
 });
-   

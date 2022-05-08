@@ -7,6 +7,10 @@ const {
   getCurrentNotes,
 } = require("../lib/notesFunctions");
 
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/Develop/public/index"));
+});
+
 router
   .route("/notes")
   .get((req, res) => {
@@ -20,12 +24,7 @@ router
     res.end();
   });
 
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/Develop/public/index"));
-});
-
 router.delete("/notes/:id", (req, res) => {
-  console.log("delete request received");
   res.json(deleteNotes(req.params.id));
 });
 
