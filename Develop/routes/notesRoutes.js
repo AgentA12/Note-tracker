@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const { Notes } = require("../db/db.json");
-
-const { writeData, deleteNotes } = require("../lib/notesFunctions");
+const {
+  writeData,
+  deleteNotes,
+  getCurrentNotes,
+} = require("../lib/notesFunctions");
 
 router
   .route("/notes")
   .get((req, res) => {
+    let Notes = getCurrentNotes();
     res.json(Notes);
   })
   .post((req, res) => {
@@ -22,6 +25,7 @@ router.get("/", (req, res) => {
 });
 
 router.delete("/notes/:id", (req, res) => {
+  console.log("delete request received");
   res.json(deleteNotes(req.params.id));
 });
 

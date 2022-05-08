@@ -2,6 +2,13 @@ const path = require("path");
 const fs = require("fs");
 const { Notes } = require("../db/db.json");
 
+function getCurrentNotes(params) {
+  let currentNotes = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../db/db.json"))
+  );
+  return currentNotes.Notes;
+}
+
 function writeData(data) {
   let userArray = Notes;
   data.id = userArray.length + 1;
@@ -29,4 +36,4 @@ function deleteNotes(noteid) {
   );
 }
 
-module.exports = { writeData, deleteNotes };
+module.exports = { writeData, deleteNotes, getCurrentNotes };
